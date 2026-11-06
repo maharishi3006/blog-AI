@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>BlogGen AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <!-- ================= HEADER ================= -->
+
+    <header class="topbar">
+      <div class="logo">
+        <div class="logo-mark">✦</div>
+
+        <div>
+          <div class="logo-name">BlogGen AI</div>
+          <div class="logo-subtitle">Content Studio</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="model-badge">
+          <span class="online-dot"></span>
+          Llama 3.2
+        </div>
+
+        <button class="header-new-btn" onclick="newChat()">
+          + New Article
+        </button>
+      </div>
+    </header>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+      <div class="hero-badge">AI-POWERED WRITING</div>
+
+      <h1>
+        From idea to
+        <span>publish-ready.</span>
+      </h1>
+
+      <p>
+        Transform your ideas into professional, engaging blog content with
+        AI-powered prompt engineering.
+      </p>
+    </section>
+
+    <!-- ================= GENERATOR ================= -->
+
+    <main class="generator">
+      <div class="section-title">
+        <div>
+          <span>01</span>
+          <h2>Define your article</h2>
+        </div>
+
+        <p>Tell the AI what you want to create.</p>
+      </div>
+
+      <div class="topic-box">
+        <label for="topic">WHAT SHOULD WE WRITE ABOUT?</label>
+
+        <input
+          type="text"
+          id="topic"
+          placeholder="Enter a topic, idea, or headline..."
+        />
+      </div>
+
+      <div class="options">
+        <div class="option">
+          <label for="style">WRITING STYLE</label>
+
+          <select id="style">
+            <option value="Informative">Informative</option>
+            <option value="Conversational">Conversational</option>
+            <option value="Technical">Technical</option>
+            <option value="Storytelling">Storytelling</option>
+            <option value="Persuasive">Persuasive</option>
+          </select>
+        </div>
+
+        <div class="option">
+          <label for="tone">TONE</label>
+
+          <select id="tone">
+            <option value="Professional">Professional</option>
+            <option value="Friendly">Friendly</option>
+            <option value="Casual">Casual</option>
+            <option value="Formal">Formal</option>
+            <option value="Enthusiastic">Enthusiastic</option>
+          </select>
+        </div>
+
+        <div class="option">
+          <label for="audience">TARGET AUDIENCE</label>
+
+          <input type="text" id="audience" placeholder="e.g. Students" />
+        </div>
+
+        <div class="option">
+          <label for="word_count">WORD COUNT</label>
+
+          <input
+            type="number"
+            id="word_count"
+            value="500"
+            min="100"
+            max="3000"
+          />
+        </div>
+      </div>
+
+      <div class="instructions">
+        <label for="instructions">
+          ADDITIONAL INSTRUCTIONS
+          <span>OPTIONAL</span>
+        </label>
+
+        <textarea
+          id="instructions"
+          placeholder="Add keywords, sections, examples, SEO requirements, or any specific instructions..."
+        ></textarea>
+      </div>
+
+      <div class="generate-area">
+        <div class="generate-info">
+          <span class="info-icon">✦</span>
+
+          <div>
+            <strong>Powered by Llama 3.2</strong>
+            <small>Running locally with Ollama</small>
+          </div>
+        </div>
+
+        <button id="generateBtn" onclick="generateBlog()">
+          <span>Generate Article</span>
+
+          <strong>→</strong>
+        </button>
+      </div>
+    </main>
+
+    <!-- ================= ARTICLE ================= -->
+
+    <section class="article-section">
+      <div class="section-title article-title">
+        <div>
+          <span>02</span>
+          <h2>Your article</h2>
+        </div>
+
+        <div class="article-actions">
+          <button id="copyBtn" onclick="copyBlog()">Copy Article</button>
+        </div>
+      </div>
+
+      <!-- Loading -->
+
+      <div id="loading" class="loading">
+        <div class="loader"></div>
+
+        <div>
+          <strong>Writing your article...</strong>
+          <span>Llama 3.2 is generating your content</span>
+        </div>
+      </div>
+
+      <!-- Generated Content -->
+
+      <article id="blogOutput" class="article-paper">
+        <div class="empty-state">
+          <div class="empty-symbol">✦</div>
+
+          <h3>Your article starts here.</h3>
+
+          <p>
+            Configure your article above and click
+            <strong>Generate Article</strong>.
+          </p>
+        </div>
+      </article>
+
+      <div class="article-bottom">
+        <button class="new-article-btn" onclick="newChat()">
+          + Create New Article
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      <span>BlogGen AI</span>
+      <span>•</span>
+      <span>Ollama</span>
+      <span>•</span>
+      <span>Llama 3.2</span>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
